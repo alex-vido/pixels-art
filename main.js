@@ -48,16 +48,17 @@ window.onload = function onLoad() {
   page25pixels.id = 'pixel-board';
   page25pixels.style.display = 'flex'
 
-  page25pixels.style.width = '150px';
-  page25pixels.style.height = '150px';
+  page25pixels.style.width = '210px';
+  page25pixels.style.height = '210px';
   page25pixels.style.flexWrap = 'wrap';
 
   for (let i = 0; i < 25; i += 1) {
     const pixel = document.createElement('div');
     pixel.className = 'pixel';
-    pixel.style.width = '25px';
-    pixel.style.height = '25px';
+    pixel.style.width = '40px';
+    pixel.style.height = '40px';
     pixel.style.backgroundColor = 'white';
+    pixel.style.border = border;
     page25pixels.appendChild(pixel);
   }
   body.appendChild(page25pixels);
