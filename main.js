@@ -48,24 +48,24 @@ window.onload = () => {
   const divColors = [colorTwo, colorThree, colorFour];
 
   const sortColors = () => {
-    let colors = ['green', 'blue', 'red', 'purple', 'pink', 'brown', 'grey'];
-    let randomColors = [];
+    const randomColors = [];
+    const colors = ['green', 'blue', 'red', 'purple', 'pink', 'brown', 'grey'];
     for (let i = 0; i < divColors.length; i += 1) {
-      let index = Math.floor(Math.random() * colors.length);
+      const index = Math.floor(Math.random() * colors.length);
       randomColors.push(colors[index]);
+      colors.splice(index, 1);
     }
     return randomColors;
   }
 
   const createColors = () => {
-    let randomColors = sortColors();
+    const randomColors = sortColors();
     for (let i = 0; i < divColors.length; i += 1) {
       divColors[i].style.backgroundColor = randomColors[i];
-      console.log(divColors[i].style.backgroundColor);
     }
-  }
+  };
 
-  btnSortColors.addEventListener('click', createColors)
+  btnSortColors.addEventListener('click', createColors);
 
   const page25pixels = document.createElement('div');
   page25pixels.id = 'pixel-board';
@@ -85,4 +85,4 @@ window.onload = () => {
   }
   body.appendChild(page25pixels);
   body.appendChild(btnSortColors);
-}
+};
