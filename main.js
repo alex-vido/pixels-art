@@ -18,7 +18,7 @@ window.onload = () => {
   colorTwo.className = 'color';
   colorThree.className = 'color';
   colorFour.className = 'color';
-
+  colorBlack.classList.add('selected')
   divPalette.style.display = 'flex';
   divPalette.style.height = '100px';
   divPalette.style.width = '400px';
@@ -64,7 +64,7 @@ window.onload = () => {
     for (let i = 0; i < divColors.length; i += 1) {
       divColors[i].style.backgroundColor = randomColors[i];
       randedColors.push(randomColors[i]);
-      localStorage.setItem('backgroundColor', JSON.stringify(randedColors));
+      localStorage.setItem('colorPalette', JSON.stringify(randedColors));
     }
   };
 
