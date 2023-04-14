@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function onLoad() {
   const body = document.querySelector('body');
   const title = document.createElement('h1');
   title.id = 'title';
@@ -50,13 +50,10 @@ window.onload = function() {
 
   page25pixels.style.width = '150px';
   page25pixels.style.height = '150px';
-  page25pixels.style.flexWrap = 'wrap'
-
-
-
+  page25pixels.style.flexWrap = 'wrap';
 
   for (let i = 0; i < 25; i += 1) {
-    let pixel = document.createElement('div');
+    const pixel = document.createElement('div');
     pixel.className = 'pixel';
     pixel.style.width = '25px';
     pixel.style.height = '25px';
@@ -64,8 +61,7 @@ window.onload = function() {
     page25pixels.appendChild(pixel);
   }
   body.appendChild(page25pixels);
-  body.appendChild(btnSortColors)
-
+  body.appendChild(btnSortColors);
 
   // const sortColors = () => {
   //   const divColors = [colorTwo, colorThree, colorFour];
@@ -84,7 +80,6 @@ window.onload = function() {
   //     console.log(colors[element]);
   //   }
   // }
-
 
   // btnSortColors.addEventListener('click', createColors)
 }
