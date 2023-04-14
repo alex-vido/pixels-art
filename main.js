@@ -1,4 +1,4 @@
-window.onload = function onLoad() {
+window.onload = () => {
   const body = document.querySelector('body');
   const title = document.createElement('h1');
   title.id = 'title';
@@ -18,10 +18,7 @@ window.onload = function onLoad() {
   colorTwo.className = 'color';
   colorThree.className = 'color';
   colorFour.className = 'color';
-  divPalette.appendChild(colorBlack);
-  divPalette.appendChild(colorTwo);
-  divPalette.appendChild(colorFour);
-  divPalette.appendChild(colorThree);
+
   divPalette.style.display = 'flex';
   divPalette.style.height = '100px';
   divPalette.style.width = '400px';
@@ -38,16 +35,41 @@ window.onload = function onLoad() {
   colorTwo.style.border = border;
   colorThree.style.border = border;
   colorFour.style.border = border;
-
+  divPalette.appendChild(colorBlack);
+  divPalette.appendChild(colorTwo);
+  divPalette.appendChild(colorFour);
+  divPalette.appendChild(colorThree);
   body.appendChild(divPalette);
 
   const btnSortColors = document.createElement('button');
   btnSortColors.id = 'button-random-color';
-  btnSortColors.innerText = 'Gerar cores aleatórias';
+  btnSortColors.innerText = 'Cores aleatórias';
+
+  const divColors = [colorTwo, colorThree, colorFour];
+
+  const sortColors = () => {
+    let colors = ['green', 'blue', 'red', 'purple', 'pink', 'brown', 'grey'];
+    let randomColors = [];
+    for (let i = 0; i < divColors.length; i += 1) {
+      let index = Math.floor(Math.random() * colors.length);
+      randomColors.push(colors[index]);
+    }
+    return randomColors;
+  }
+
+  const createColors = () => {
+    let randomColors = sortColors();
+    for (let i = 0; i < divColors.length; i += 1) {
+      divColors[i].style.backgroundColor = randomColors[i];
+      console.log(divColors[i].style.backgroundColor);
+    }
+  }
+
+  btnSortColors.addEventListener('click', createColors)
+
   const page25pixels = document.createElement('div');
   page25pixels.id = 'pixel-board';
-  page25pixels.style.display = 'flex'
-
+  page25pixels.style.display = 'flex';
   page25pixels.style.width = '210px';
   page25pixels.style.height = '210px';
   page25pixels.style.flexWrap = 'wrap';
@@ -63,24 +85,4 @@ window.onload = function onLoad() {
   }
   body.appendChild(page25pixels);
   body.appendChild(btnSortColors);
-
-  // const sortColors = () => {
-  //   const divColors = [colorTwo, colorThree, colorFour];
-  //   let randomColors = [];
-  //   for (let i = 0; i < 3; i += 1) {
-  //     let index = Math.floor(Math.random() * divColors.length);
-  //     randomColors.push(divColors[index]);
-  //   }
-  //   return randomColors;
-  // }
-
-  // const createColors = (elements, sortColors) => {
-  //   let colors = sortColors(['green', 'blue', 'red', 'purple', 'pink', 'brown', 'grey']);
-  //   for (let element of elements) {
-  //     element.style.backgroundColor = colors[element];
-  //     console.log(colors[element]);
-  //   }
-  // }
-
-  // btnSortColors.addEventListener('click', createColors)
 }
