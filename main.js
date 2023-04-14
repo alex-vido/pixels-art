@@ -18,7 +18,7 @@ window.onload = () => {
   colorTwo.className = 'color';
   colorThree.className = 'color';
   colorFour.className = 'color';
-  colorBlack.classList.add('selected')
+  colorBlack.classList.add('selected');
   divPalette.style.display = 'flex';
   divPalette.style.height = '100px';
   divPalette.style.width = '400px';
@@ -40,6 +40,8 @@ window.onload = () => {
   divPalette.appendChild(colorFour);
   divPalette.appendChild(colorThree);
   body.appendChild(divPalette);
+  let elementSelected = document.querySelector('.selected');
+  let colorSelected = elementSelected.style.backgroundColor;
 
   const btnSortColors = document.createElement('button');
   btnSortColors.id = 'button-random-color';
@@ -77,6 +79,10 @@ window.onload = () => {
   page25pixels.style.height = '210px';
   page25pixels.style.flexWrap = 'wrap';
 
+  const changeColor = (e) => {
+    e.target.style.backgroundColor = colorSelected;
+  }
+
   for (let i = 0; i < 25; i += 1) {
     const pixel = document.createElement('div');
     pixel.className = 'pixel';
@@ -85,6 +91,7 @@ window.onload = () => {
     pixel.style.backgroundColor = 'white';
     pixel.style.border = border;
     page25pixels.appendChild(pixel);
+    pixel.addEventListener('click', changeColor);
   }
   body.appendChild(page25pixels);
   body.appendChild(btnSortColors);
@@ -95,5 +102,17 @@ window.onload = () => {
     if (getBackgroundColor) {
       divColors[i].style.backgroundColor = getBackgroundColor[i];
     }
+  }
+  const elements = [colorBlack, colorTwo, colorThree, colorFour]
+
+  const elSelected = (e) => {
+    elementSelected.classList.remove('selected');
+    e.target.classList.add('selected');
+    elementSelected = e.target;
+    colorSelected = e.target.style.backgroundColor;
+  }
+
+  for (let i = 0; i < elements.length; i += 1) {
+    elements[i].addEventListener('click', elSelected);
   }
 };
