@@ -93,6 +93,13 @@ window.onload = () => {
     page25pixels.appendChild(pixel);
     pixel.addEventListener('click', changeColor);
   }
+
+
+  const btnClearPixels = document.createElement('button');
+  btnClearPixels.id = 'clear-board';
+  btnClearPixels.innerText = 'Limpar';
+  body.appendChild(btnClearPixels)
+
   body.appendChild(page25pixels);
   body.appendChild(btnSortColors);
 
@@ -116,15 +123,10 @@ window.onload = () => {
     elements[i].addEventListener('click', elSelected);
   }
 
-  const btnClearPixels = document.createElement('button');
-  btnClearPixels.id = 'clear-board';
-  btnClearPixels.innerText = 'Limpar';
-  body.appendChild(btnClearPixels)
-
   const clearPixels = () => {
     const pixels = document.querySelectorAll('.pixel');
-    for (let pixel of pixels) {
-      pixel.style.backgroundColor = 'white';
+    for (let i = 0; i < pixels.length; i += 1) {
+      pixels[i].style.backgroundColor = 'white';
     }
   }
 
