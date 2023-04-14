@@ -11,9 +11,9 @@ window.onload = () => {
   const colorThree = document.createElement('div');
   const colorFour = document.createElement('div');
   colorBlack.style.backgroundColor = 'black';
-  colorTwo.style.backgroundColor = 'red';
-  colorThree.style.backgroundColor = 'blue';
-  colorFour.style.backgroundColor = 'green';
+  colorTwo.style.backgroundColor = 'pink';
+  colorThree.style.backgroundColor = 'green';
+  colorFour.style.backgroundColor = 'yellow';
   colorBlack.className = 'color';
   colorTwo.className = 'color';
   colorThree.className = 'color';
@@ -60,8 +60,12 @@ window.onload = () => {
 
   const createColors = () => {
     const randomColors = sortColors();
+    const randedColors = []
     for (let i = 0; i < divColors.length; i += 1) {
       divColors[i].style.backgroundColor = randomColors[i];
+      randedColors.push(randomColors[i]);
+      localStorage.setItem('backgroundColor', JSON.stringify(randedColors));
+      console.log( localStorage.setItem('colorPalette', JSON.stringify(randedColors)));
     }
   };
 
@@ -85,4 +89,12 @@ window.onload = () => {
   }
   body.appendChild(page25pixels);
   body.appendChild(btnSortColors);
+
+  const getBackgroundColor = JSON.parse(localStorage.getItem('colorPalette'));
+
+  for (let i = 0; i < divColors.length; i += 1) {
+    if (getBackgroundColor) {
+      divColors[i].style.backgroundColor = getBackgroundColor [i];
+    }
+  }
 };
