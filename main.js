@@ -81,7 +81,7 @@ window.onload = () => {
 
   const changeColor = (e) => {
     e.target.style.backgroundColor = colorSelected;
-  }
+  };
 
   for (let i = 0; i < 25; i += 1) {
     const pixel = document.createElement('div');
@@ -103,16 +103,30 @@ window.onload = () => {
       divColors[i].style.backgroundColor = getBackgroundColor[i];
     }
   }
-  const elements = [colorBlack, colorTwo, colorThree, colorFour]
+  const elements = [colorBlack, colorTwo, colorThree, colorFour];
 
   const elSelected = (e) => {
     elementSelected.classList.remove('selected');
     e.target.classList.add('selected');
     elementSelected = e.target;
     colorSelected = e.target.style.backgroundColor;
-  }
+  };
 
   for (let i = 0; i < elements.length; i += 1) {
     elements[i].addEventListener('click', elSelected);
   }
+
+  const btnClearPixels = document.createElement('button');
+  btnClearPixels.id = 'clear-board';
+  btnClearPixels.innerText = 'Limpar';
+  body.appendChild(btnClearPixels)
+
+  const clearPixels = () => {
+    const pixels = document.querySelectorAll('.pixel');
+    for (let pixel of pixels) {
+      pixel.style.backgroundColor = 'white';
+    }
+  }
+
+  btnClearPixels.addEventListener('click', clearPixels);
 };
