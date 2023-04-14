@@ -46,14 +46,20 @@ window.onload = function() {
   btnSortColors.innerText = 'Gerar cores aleatórias';
   const page25pixels = document.createElement('div');
   page25pixels.id = 'pixel-board';
-  page25pixels.style.width = '25px';
-  page25pixels.style.height = '25px';
+  page25pixels.style.display = 'flex'
 
-  for (let i = 0; i < 5; i += 1) {
+  page25pixels.style.width = '150px';
+  page25pixels.style.height = '150px';
+  page25pixels.style.flexWrap = 'wrap'
+
+
+
+
+  for (let i = 0; i < 25; i += 1) {
     let pixel = document.createElement('div');
     pixel.className = 'pixel';
-    pixel.width = '5px';
-    pixel.height = '5px';
+    pixel.style.width = '25px';
+    pixel.style.height = '25px';
     pixel.style.backgroundColor = 'white';
     page25pixels.appendChild(pixel);
   }
