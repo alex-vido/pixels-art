@@ -56,16 +56,15 @@ window.onload = () => {
       colors.splice(index, 1);
     }
     return randomColors;
-  }
+  };
 
   const createColors = () => {
     const randomColors = sortColors();
-    const randedColors = []
+    const randedColors = [];
     for (let i = 0; i < divColors.length; i += 1) {
       divColors[i].style.backgroundColor = randomColors[i];
       randedColors.push(randomColors[i]);
       localStorage.setItem('backgroundColor', JSON.stringify(randedColors));
-      console.log( localStorage.setItem('colorPalette', JSON.stringify(randedColors)));
     }
   };
 
@@ -94,7 +93,7 @@ window.onload = () => {
 
   for (let i = 0; i < divColors.length; i += 1) {
     if (getBackgroundColor) {
-      divColors[i].style.backgroundColor = getBackgroundColor [i];
+      divColors[i].style.backgroundColor = getBackgroundColor[i];
     }
   }
 };
