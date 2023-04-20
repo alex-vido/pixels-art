@@ -1,5 +1,15 @@
 // window.onload = () => {
 const body = document.querySelector('body');
+body.style.display = 'flex';
+body.style.justifyContent = 'center';
+body.style.alignItems = 'center';
+body.style.flexDirection = 'column'
+body.style.backgroundImage = 'url(./paissagem.jpg)'
+body.style.backgroundRepeat = 'no-repeat';
+body.style.backgroundSize = 'cover';
+body.style.backgroundPosition = 'center';
+body.style.height = 'calc(100vh - 1rem)'
+body.style.color = 'rgb(253, 244, 245)'
 const title = document.createElement('h1');
 title.id = 'title';
 title.innerText = 'Paleta de Cores';
@@ -20,16 +30,16 @@ colorThree.className = 'color';
 colorFour.className = 'color';
 colorBlack.classList.add('selected');
 divPalette.style.display = 'flex';
-divPalette.style.height = '100px';
-divPalette.style.width = '400px';
-colorBlack.style.height = '100px';
-colorBlack.style.width = '100px';
-colorTwo.style.height = '100px';
-colorTwo.style.width = '100px';
-colorThree.style.height = '100px';
-colorThree.style.width = '100px';
-colorFour.style.height = '100px';
-colorFour.style.width = '100px';
+divPalette.style.height = '50px';
+divPalette.style.width = '200px';
+colorBlack.style.height = '50px';
+colorBlack.style.width = '200px';
+colorTwo.style.height = '50px';
+colorTwo.style.width = '200px';
+colorThree.style.height = '50px';
+colorThree.style.width = '200px';
+colorFour.style.height = '50px';
+colorFour.style.width = '200px';
 const border = 'black 1px solid';
 colorBlack.style.border = border;
 colorTwo.style.border = border;
@@ -103,8 +113,11 @@ for (let i = 0; i < 25; i += 1) {
 const btnClearPixels = document.createElement('button');
 btnClearPixels.id = 'clear-board';
 btnClearPixels.innerText = 'Limpar';
-body.appendChild(btnClearPixels)
-body.appendChild(btnSortColors);
+const divBtn = document.createElement('div');
+divBtn.style.margin = '1rem 0';
+body.appendChild(divBtn)
+divBtn.appendChild(btnClearPixels)
+divBtn.appendChild(btnSortColors);
 
 const division = document.createElement('div');
 division.style.marginBottom = '1rem';
@@ -164,8 +177,17 @@ division.appendChild(input);
 division.appendChild(btnChangeSizePixels);
 body.appendChild(pagePixels);
 
-
 body.appendChild(pagePixels);
+
+const btns = document.getElementsByTagName('button');
+for (let i = 0; i < btns.length; i += 1) {
+  btns[i].style.backgroundColor = 'rgb(253, 244, 245)';
+  btns[i].style.color = 'rgb(45, 39, 39)';
+  btns[i].style.border = 'none';
+  btns[i].style.borderRadius = '15px';
+  btns[i].style.margin = '0 2px';
+  btns[i].style.padding = '0.3rem 0.5rem';
+}
 
 const getBackgroundColor = JSON.parse(localStorage.getItem('colorPalette'));
 
