@@ -1,4 +1,4 @@
-window.onload = () => {
+// window.onload = () => {
   const body = document.querySelector('body');
   const title = document.createElement('h1');
   title.id = 'title';
@@ -72,12 +72,11 @@ window.onload = () => {
 
   btnSortColors.addEventListener('click', createColors);
 
-  const page25pixels = document.createElement('div');
-  page25pixels.id = 'pixel-board';
-  page25pixels.style.display = 'flex';
-  page25pixels.style.width = '210px';
-  page25pixels.style.height = '210px';
-  page25pixels.style.flexWrap = 'wrap';
+  const pagePixels = document.createElement('div');
+  pagePixels.id = 'pixel-board';
+  pagePixels.style.display = 'grid';
+  pagePixels.style.gridTemplateColumns = 'repeat(5, 41px)';
+  pagePixels.style.gridTemplateRows = 'repeat(5, 41px)';
 
   const changeColor = (e) => {
     e.target.style.backgroundColor = colorSelected;
@@ -97,17 +96,62 @@ window.onload = () => {
     pixel.style.height = '40px';
     pixel.style.backgroundColor = 'white';
     pixel.style.border = border;
-    page25pixels.appendChild(pixel);
+    pagePixels.appendChild(pixel);
     pixel.addEventListener('click', changeColor);
-    }
-
+    };
 
   const btnClearPixels = document.createElement('button');
   btnClearPixels.id = 'clear-board';
   btnClearPixels.innerText = 'Limpar';
   body.appendChild(btnClearPixels)
   body.appendChild(btnSortColors);
-  body.appendChild(page25pixels);
+
+  const division = document.createElement('div');
+  division.style.marginBottom = '1rem';
+  body.appendChild(division);
+  const input = document.createElement('input');
+  input.type = 'number';
+  input.min = '1';
+  input.id = 'board-size';
+  const btnChangeSizePixels = document.createElement('button');
+  btnChangeSizePixels.id = 'generate-board';
+  btnChangeSizePixels.innerText = 'VQV';
+
+  const changeSizePixels = () => {
+    numberOfPixels = input.value;
+    const pixels = document.getElementsByClassName('pixel');
+    if (numberOfPixels === '') {
+      alert("Board inválido!")
+    } else {
+      pagePixels.style.gridTemplateColumns = `repeat(${numberOfPixels}, 41px)`;
+      pagePixels.style.gridTemplateRows = `repeat(${numberOfPixels}, 41px)`;
+
+      for (let i = pixels.length - 1; i >= 0; i -= 1) {
+        pagePixels.removeChild(pixels[i]);
+      }
+      body.removeChild(pagePixels);
+
+      for (let i = 0; i < numberOfPixels * numberOfPixels; i += 1) {
+          const pixel = document.createElement('div');
+          pixel.className = 'pixel';
+          pixel.style.width = '40px';
+          pixel.style.height = '40px';
+          pixel.style.backgroundColor = 'white';
+          pixel.style.border = border;
+          pixel.addEventListener('click', changeColor);
+          pagePixels.appendChild(pixel);
+        }
+      body.appendChild(pagePixels);
+  }
+}
+
+    btnChangeSizePixels.addEventListener('click', changeSizePixels);
+    division.appendChild(input);
+    division.appendChild(btnChangeSizePixels);
+    body.appendChild(pagePixels);
+
+
+  body.appendChild(pagePixels);
 
   const getBackgroundColor = JSON.parse(localStorage.getItem('colorPalette'));
 
@@ -145,4 +189,51 @@ window.onload = () => {
   }
 
   btnClearPixels.addEventListener('click', clearPixels);
-};
+// };
+
+  // const division = document.createElement('div');
+  // division.style.marginBottom = '1rem';
+  // body.appendChild(division);
+  // const input = document.createElement('input');
+  // input.minLength = 1;
+  // input.id = 'board-size';
+  // const btnChangeSizePixels = document.createElement('button');
+  // btnChangeSizePixels.id = 'generate-board';
+  // btnChangeSizePixels.innerText = 'VQV';
+
+  // const changeSizePixels = () => {
+  //   numberOfPixels = input.value;
+  //   if (numberOfPixels === '') {
+  //     alert("Board inválido!")
+  //   } else {
+  //     numberOfPixelsMult = numberOfPixels * pixelSize;
+  //     pagePixels.style.width = numberOfPixelsMult + 'px';
+  //     pagePixels.style.height = numberOfPixelsMult + 'px';
+  //     const lines = document.getElementsByClassName('line');
+  //     for (let i = lines.length - 1; i >= 0; i -= 1) {
+  //       pagePixels.removeChild(lines[i]);
+  //     }
+  //     body.removeChild(pagePixels);
+
+  //     for (let i = 0; i < numberOfPixels; i += 1) {
+  //       const line= document.createElement('div');
+  //       for (let j = 0; j < numberOfPixels; j += 1) {
+  //         const pixel = document.createElement('div');
+  //         pixel.className = 'pixel';
+  //         pixel.style.width = '40px';
+  //         pixel.style.height = '40px';
+  //         pixel.style.backgroundColor = 'white';
+  //         pixel.style.border = border;
+  //         pixel.addEventListener('click', changeColor);
+  //         line.appendChild(pixel);
+  //       }
+  //       pagePixels.appendChild(line);
+  //     }
+  //     body.appendChild(pagePixels);
+  //   }
+  // }
+
+  //   btnChangeSizePixels.addEventListener('click', changeSizePixels);
+  //   division.appendChild(input);
+  //   division.appendChild(btnChangeSizePixels);
+  //   body.appendChild(pagePixels);
