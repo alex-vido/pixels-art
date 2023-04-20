@@ -117,33 +117,45 @@
   btnChangeSizePixels.id = 'generate-board';
   btnChangeSizePixels.innerText = 'VQV';
 
-  const changeSizePixels = () => {
-    numberOfPixels = input.value;
-    const pixels = document.getElementsByClassName('pixel');
-    if (numberOfPixels === '') {
+  const limiter = () => {
+    let numberOfPixels;
+    if (input.value === '') {
       alert("Board inválido!")
+    } else if (input.value < 5) {
+      numberOfPixels = 5;
+    } else if (input.value > 50) {
+      numberOfPixels = 50;
     } else {
-      pagePixels.style.gridTemplateColumns = `repeat(${numberOfPixels}, 41px)`;
-      pagePixels.style.gridTemplateRows = `repeat(${numberOfPixels}, 41px)`;
-
-      for (let i = pixels.length - 1; i >= 0; i -= 1) {
-        pagePixels.removeChild(pixels[i]);
-      }
-      body.removeChild(pagePixels);
-
-      for (let i = 0; i < numberOfPixels * numberOfPixels; i += 1) {
-          const pixel = document.createElement('div');
-          pixel.className = 'pixel';
-          pixel.style.width = '40px';
-          pixel.style.height = '40px';
-          pixel.style.backgroundColor = 'white';
-          pixel.style.border = border;
-          pixel.addEventListener('click', changeColor);
-          pagePixels.appendChild(pixel);
-        }
-      body.appendChild(pagePixels);
+      numberOfPixels = input.value;
+    }
+    console.log(numberOfPixels);
+    return numberOfPixels;
   }
+
+  const changeSizePixels = () => {
+    numberOfPixels = limiter();
+    const pixels = document.getElementsByClassName('pixel');
+    pagePixels.style.gridTemplateColumns = `repeat(${numberOfPixels}, 41px)`;
+    pagePixels.style.gridTemplateRows = `repeat(${numberOfPixels}, 41px)`;
+
+    for (let i = pixels.length - 1; i >= 0; i -= 1) {
+      pagePixels.removeChild(pixels[i]);
+    }
+    body.removeChild(pagePixels);
+
+    for (let i = 0; i < numberOfPixels * numberOfPixels; i += 1) {
+      const pixel = document.createElement('div');
+      pixel.className = 'pixel';
+      pixel.style.width = '40px';
+      pixel.style.height = '40px';
+      pixel.style.backgroundColor = 'white';
+      pixel.style.border = border;
+      pixel.addEventListener('click', changeColor);
+      pagePixels.appendChild(pixel);
+    }
+  body.appendChild(pagePixels);
 }
+
 
     btnChangeSizePixels.addEventListener('click', changeSizePixels);
     division.appendChild(input);
